@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2nd Trimester Announcement - 3ª Série EM</title>
+  <title>Tracking the World of Work – 3ª Série</title>
   <style>
+    :root {
+      --blue: #2563eb;
+      --dark-blue: #1e3a8a;
+      --cyan: #06b6d4;
+      --green: #10b981;
+      --yellow: #facc15;
+      --orange: #f97316;
+      --red: #ef4444;
+      --purple: #7c3aed;
+      --ink: #172033;
+      --muted: #64748b;
+      --bg: #eef6ff;
+      --card: #ffffff;
+      --soft: #f8fafc;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -12,354 +28,560 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
-      line-height: 1.5;
+      background:
+        radial-gradient(circle at top left, rgba(16, 185, 129, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.18), transparent 30%),
+        linear-gradient(180deg, #ecfdf5, #f8fafc 45%, #eef2ff);
+      color: var(--ink);
+      line-height: 1.6;
     }
 
-    .deck {
-      width: 100%;
-      min-height: 100vh;
-      scroll-snap-type: y mandatory;
-      overflow-y: auto;
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 18px 50px;
     }
 
-    .slide {
-      min-height: 100vh;
-      padding: 56px 8vw;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      scroll-snap-align: start;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    .hero {
+      background: linear-gradient(135deg, #064e3b, #047857 45%, #2563eb);
+      color: white;
+      border-radius: 28px;
+      padding: 42px 32px;
+      box-shadow: 0 22px 55px rgba(6, 78, 59, 0.28);
+      position: relative;
+      overflow: hidden;
     }
 
-    .slide:nth-child(even) {
-      background: #111827;
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      right: -70px;
+      top: -80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.16);
     }
 
-    .tag {
-      display: inline-block;
-      background: #38bdf8;
-      color: #082f49;
-      font-weight: bold;
-      padding: 8px 14px;
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 6vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -2px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero .subtitle {
+      margin-top: 18px;
+      font-size: clamp(1.05rem, 2.5vw, 1.45rem);
+      max-width: 820px;
+      opacity: 0.96;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero .meta {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 22px;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.25);
       border-radius: 999px;
-      margin-bottom: 20px;
-      width: fit-content;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 13px;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
     }
 
-    h1 {
-      font-size: clamp(42px, 7vw, 88px);
-      line-height: 1.05;
-      margin: 0 0 24px;
-      color: #ffffff;
+    section {
+      background: var(--card);
+      margin-top: 22px;
+      padding: 28px;
+      border-radius: 24px;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(148, 163, 184, 0.25);
     }
 
     h2 {
-      font-size: clamp(34px, 5vw, 64px);
-      line-height: 1.1;
-      margin: 0 0 24px;
-      color: #ffffff;
+      margin: 0 0 16px;
+      color: #065f46;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     h3 {
-      font-size: clamp(24px, 3vw, 36px);
-      color: #7dd3fc;
-      margin: 16px 0;
+      color: #047857;
+      margin-bottom: 8px;
     }
 
-    p {
-      font-size: clamp(20px, 2.2vw, 30px);
-      max-width: 960px;
-      margin: 0 0 20px;
-      color: #dbeafe;
+    .lead {
+      font-size: 1.08rem;
+      color: #334155;
+      margin-top: 0;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 16px 0 0;
+    .mission {
       display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 14px;
-      max-width: 1000px;
+      margin-top: 18px;
     }
 
-    li {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 16px 20px;
-      border-radius: 16px;
-      font-size: clamp(19px, 2vw, 27px);
-      border-left: 5px solid #38bdf8;
+    .pill {
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+      border-radius: 18px;
+      padding: 14px;
+      text-align: center;
+      font-weight: 700;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
       gap: 18px;
-      margin-top: 24px;
-      max-width: 1100px;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.09);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 22px;
-      padding: 24px;
-      min-height: 170px;
+      background: var(--soft);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid #e2e8f0;
     }
 
-    .card strong {
-      display: block;
-      color: #7dd3fc;
-      font-size: 24px;
+    .card h3 {
+      margin-top: 0;
+    }
+
+    ul {
+      margin: 10px 0 0;
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 7px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 16px;
+      margin-top: 16px;
+      background: white;
+    }
+
+    th, td {
+      padding: 13px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #d1fae5;
+      color: #064e3b;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .project {
+      background: linear-gradient(135deg, #ecfdf5, #eff6ff);
+      border: 2px solid #a7f3d0;
+    }
+
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .word {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      border: 1px solid #bbf7d0;
+      border-radius: 14px;
+      padding: 10px 12px;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+    }
+
+    .word strong {
+      color: #047857;
+    }
+
+    button.audio {
+      border: none;
+      background: #047857;
+      color: white;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    button.audio:hover {
+      background: #065f46;
+    }
+
+    .tips {
+      background: linear-gradient(135deg, #fef9c3, #ffedd5);
+      border: 1px solid #fde68a;
+    }
+
+    .footer {
+      text-align: center;
+      color: #475569;
+      padding: 28px 10px 0;
+      font-weight: 700;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1e40af;
+      font-size: 0.85rem;
+      font-weight: 700;
       margin-bottom: 8px;
     }
 
-    .card span {
-      display: block;
-      font-size: 20px;
-      color: #e0f2fe;
-    }
+    @media (max-width: 620px) {
+      .hero, section {
+        border-radius: 20px;
+        padding: 24px;
+      }
 
-    .big-word {
-      font-size: clamp(46px, 8vw, 108px);
-      font-weight: 900;
-      color: #38bdf8;
-      line-height: 1;
-      margin-bottom: 24px;
-    }
-
-    .quote {
-      font-size: clamp(28px, 4vw, 56px);
-      font-weight: bold;
-      color: #fef3c7;
-      max-width: 1000px;
-    }
-
-    .footer-note {
-      margin-top: 36px;
-      font-size: 18px;
-      color: #94a3b8;
-    }
-
-    .audio-btn {
-      margin-top: 12px;
-      background: #38bdf8;
-      color: #082f49;
-      border: none;
-      border-radius: 999px;
-      padding: 10px 16px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .audio-btn:hover {
-      background: #7dd3fc;
-    }
-
-    @media print {
-      .slide {
-        page-break-after: always;
-        min-height: 100vh;
+      th, td {
+        font-size: 0.92rem;
+        padding: 10px;
       }
     }
   </style>
 </head>
 <body>
-  <main class="deck">
-    <section class="slide">
-      <span class="tag">Língua Inglesa — 2º Trimestre 2026</span>
-      <h1>Welcome to the 2nd Trimester</h1>
-      <p>3ª Série do Ensino Médio</p>
-      <p><strong>Theme:</strong> Tracking the World of Work</p>
-      <p class="footer-note">This trimester connects English with careers, communication, interviews, skills, and your future professional path.</p>
+  <main class="page">
+    <header class="hero">
+      <h1>Tracking the World of Work</h1>
+      <p class="subtitle">Business English, job interviews, professional communication and ENEM reading strategies</p>
+      <div class="meta">3ª Série do Ensino Médio | 2º Trimestre – 2026</div>
+    </header>
+
+    <section>
+      <h2>👋 Welcome, students!</h2>
+      <p class="lead">
+        Neste trimestre, vamos estudar inglês conectado ao mundo do trabalho, ao projeto de vida e à preparação para situações reais de comunicação profissional.
+      </p>
+      <p>
+        Nosso foco será usar a língua inglesa para falar sobre competências, carreira, entrevistas de emprego, networking, empreendedorismo, linguagem formal, comunicação assertiva e interpretação de textos no estilo ENEM e Prova Paraná.
+      </p>
     </section>
 
-    <section class="slide">
-      <span class="tag">Main Question</span>
-      <h2>How can English help you prepare for the world of work?</h2>
-      <ul>
-        <li>We will talk about careers and professional skills.</li>
-        <li>We will practice useful vocabulary for real-life situations.</li>
-        <li>We will prepare for interviews, presentations, and future opportunities.</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <span class="tag">What We Will Study</span>
-      <h2>Trimester Topics</h2>
-      <div class="grid">
-        <div class="card"><strong>Skills</strong><span>Soft skills, hard skills, teamwork, responsibility, communication.</span></div>
-        <div class="card"><strong>Work</strong><span>The world of work in the 21st century.</span></div>
-        <div class="card"><strong>Adaptability</strong><span>Flexibility, learning, problem-solving, and change.</span></div>
-        <div class="card"><strong>Interviews</strong><span>Job interviews, professional profiles, and formal communication.</span></div>
+    <section>
+      <h2>🎯 Nossa missão no 2º trimestre</h2>
+      <p>Durante esta etapa, vamos usar o inglês para:</p>
+      <div class="mission">
+        <div class="pill">falar em entrevistas</div>
+        <div class="pill">usar business English</div>
+        <div class="pill">criar role-plays</div>
+        <div class="pill">interpretar textos ENEM</div>
+        <div class="pill">desenvolver soft skills</div>
+        <div class="pill">planejar o futuro</div>
       </div>
     </section>
 
-    <section class="slide">
-      <span class="tag">Top 20 Words</span>
-      <h2>The Most Important Words of the Trimester</h2>
+    <section>
+      <h2>📚 O que vamos aprender</h2>
       <div class="grid">
-        <div class="card"><strong>leadership</strong><span>liderança</span><button class="audio-btn" onclick="speak('leadership')">▶ Listen</button></div>
-        <div class="card"><strong>teamwork</strong><span>trabalho em equipe</span><button class="audio-btn" onclick="speak('teamwork')">▶ Listen</button></div>
-        <div class="card"><strong>communication</strong><span>comunicação</span><button class="audio-btn" onclick="speak('communication')">▶ Listen</button></div>
-        <div class="card"><strong>responsibility</strong><span>responsabilidade</span><button class="audio-btn" onclick="speak('responsibility')">▶ Listen</button></div>
-        <div class="card"><strong>adaptability</strong><span>adaptabilidade</span><button class="audio-btn" onclick="speak('adaptability')">▶ Listen</button></div>
-        <div class="card"><strong>confidence</strong><span>confiança</span><button class="audio-btn" onclick="speak('confidence')">▶ Listen</button></div>
-        <div class="card"><strong>experience</strong><span>experiência</span><button class="audio-btn" onclick="speak('experience')">▶ Listen</button></div>
-        <div class="card"><strong>goals</strong><span>objetivos</span><button class="audio-btn" onclick="speak('goals')">▶ Listen</button></div>
-        <div class="card"><strong>skills</strong><span>habilidades</span><button class="audio-btn" onclick="speak('skills')">▶ Listen</button></div>
-        <div class="card"><strong>career</strong><span>carreira</span><button class="audio-btn" onclick="speak('career')">▶ Listen</button></div>
-        <div class="card"><strong>problem-solving</strong><span>resolver problemas</span><button class="audio-btn" onclick="speak('problem solving')">▶ Listen</button></div>
-        <div class="card"><strong>flexibility</strong><span>flexibilidade</span><button class="audio-btn" onclick="speak('flexibility')">▶ Listen</button></div>
-        <div class="card"><strong>productivity</strong><span>produtividade</span><button class="audio-btn" onclick="speak('productivity')">▶ Listen</button></div>
-        <div class="card"><strong>interview</strong><span>entrevista</span><button class="audio-btn" onclick="speak('interview')">▶ Listen</button></div>
-        <div class="card"><strong>qualification</strong><span>qualificação</span><button class="audio-btn" onclick="speak('qualification')">▶ Listen</button></div>
-        <div class="card"><strong>organization</strong><span>organização</span><button class="audio-btn" onclick="speak('organization')">▶ Listen</button></div>
-        <div class="card"><strong>innovation</strong><span>inovação</span><button class="audio-btn" onclick="speak('innovation')">▶ Listen</button></div>
-        <div class="card"><strong>deadline</strong><span>prazo</span><button class="audio-btn" onclick="speak('deadline')">▶ Listen</button></div>
-        <div class="card"><strong>entrepreneurship</strong><span>empreendedorismo</span><button class="audio-btn" onclick="speak('entrepreneurship')">▶ Listen</button></div>
-        <div class="card"><strong>professional profile</strong><span>perfil profissional</span><button class="audio-btn" onclick="speak('professional profile')">▶ Listen</button></div>
+        <div class="card">
+          <span class="tag">World of Work</span>
+          <ul>
+            <li>Competences and skills.</li>
+            <li>Soft skills and hard skills.</li>
+            <li>Future skills and 21st century work.</li>
+            <li>Flexibility and adaptability.</li>
+            <li>Entrepreneurship and career planning.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">Job Interviews</span>
+          <ul>
+            <li>Job interview structure.</li>
+            <li>Formal language and posture.</li>
+            <li>Common interview questions.</li>
+            <li>Small talk and greetings.</li>
+            <li>Interview role-play.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">Business English</span>
+          <ul>
+            <li>Networking.</li>
+            <li>Introducing yourself.</li>
+            <li>Talking about a company.</li>
+            <li>Recruitment vocabulary.</li>
+            <li>Professional communication.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">ENEM & Multimodality</span>
+          <ul>
+            <li>Grammar in context.</li>
+            <li>Multimodal texts.</li>
+            <li>Verbal and non-verbal language.</li>
+            <li>Intention and effects of meaning.</li>
+            <li>Reading strategies for ENEM and Prova Paraná.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="slide">
-      <span class="tag">Top 20 Chunks + Audio</span>
-      <h2>The Most Useful English Chunks</h2>
-      <ul>
-        <li>I am good at... <button class="audio-btn" onclick="speak('I am good at')">▶ Listen</button></li>
-        <li>My strengths are... <button class="audio-btn" onclick="speak('My strengths are')">▶ Listen</button></li>
-        <li>I work well with others. <button class="audio-btn" onclick="speak('I work well with others')">▶ Listen</button></li>
-        <li>I can solve problems. <button class="audio-btn" onclick="speak('I can solve problems')">▶ Listen</button></li>
-        <li>I have experience in... <button class="audio-btn" onclick="speak('I have experience in')">▶ Listen</button></li>
-        <li>My future goal is... <button class="audio-btn" onclick="speak('My future goal is')">▶ Listen</button></li>
-        <li>I would be a good employee because... <button class="audio-btn" onclick="speak('I would be a good employee because')">▶ Listen</button></li>
-        <li>I learn quickly. <button class="audio-btn" onclick="speak('I learn quickly')">▶ Listen</button></li>
-        <li>I am responsible for... <button class="audio-btn" onclick="speak('I am responsible for')">▶ Listen</button></li>
-        <li>I adapt easily to change. <button class="audio-btn" onclick="speak('I adapt easily to change')">▶ Listen</button></li>
-        <li>I enjoy working in teams. <button class="audio-btn" onclick="speak('I enjoy working in teams')">▶ Listen</button></li>
-        <li>I can communicate effectively. <button class="audio-btn" onclick="speak('I can communicate effectively')">▶ Listen</button></li>
-        <li>I would like to improve... <button class="audio-btn" onclick="speak('I would like to improve')">▶ Listen</button></li>
-        <li>One important skill is... <button class="audio-btn" onclick="speak('One important skill is')">▶ Listen</button></li>
-        <li>In my opinion... <button class="audio-btn" onclick="speak('In my opinion')">▶ Listen</button></li>
-        <li>I agree because... <button class="audio-btn" onclick="speak('I agree because')">▶ Listen</button></li>
-        <li>I disagree because... <button class="audio-btn" onclick="speak('I disagree because')">▶ Listen</button></li>
-        <li>My biggest challenge is... <button class="audio-btn" onclick="speak('My biggest challenge is')">▶ Listen</button></li>
-        <li>I am interested in... <button class="audio-btn" onclick="speak('I am interested in')">▶ Listen</button></li>
-        <li>English can help me in the future because... <button class="audio-btn" onclick="speak('English can help me in the future because')">▶ Listen</button></li>
-      </ul>
+    <section>
+      <h2>🧭 Descritores / habilidades trabalhadas</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Habilidade</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Hd04</strong></td><td>Localizar informações em textos sobre competências e habilidades demandadas pelo mundo do trabalho atual e/ou sobre projetos pessoais.</td></tr>
+          <tr><td><strong>Hd05</strong></td><td>Identificar características e/ou elementos de uma entrevista de emprego.</td></tr>
+          <tr><td><strong>Hd06</strong></td><td>Reconhecer o efeito de sentido de palavras e expressões usadas em uma entrevista de emprego e/ou comportamentos valorizados pelos recrutadores.</td></tr>
+          <tr><td><strong>ENEM / Prova Paraná</strong></td><td>Interpretar textos verbais e multimodais, reconhecendo tema, finalidade, intenção comunicativa, recursos visuais e efeitos de sentido.</td></tr>
+        </tbody>
+      </table>
     </section>
 
-    <section class="slide">
-      <span class="tag">Best Audio Practice</span>
-      <h2>Listening Resources We Will Use</h2>
-      <div class="grid">
-        <div class="card"><strong>BBC Learning English</strong><span>Short professional English audios and workplace conversations.</span></div>
-        <div class="card"><strong>TED-Ed & TED Talks</strong><span>Real-world communication, careers, motivation, and innovation.</span></div>
-        <div class="card"><strong>Elllo.org</strong><span>Listening practice with different accents and levels.</span></div>
-        <div class="card"><strong>Voice of America Learning English</strong><span>Clear and slower English for comprehension practice.</span></div>
-        <div class="card"><strong>British Council LearnEnglish</strong><span>Listening tasks, interviews, and professional situations.</span></div>
-        <div class="card"><strong>Spotify / Podcasts</strong><span>Short episodes about careers, work, and communication.</span></div>
+    <section>
+      <h2>📝 Como será a avaliação</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Componente</th>
+            <th>Valor</th>
+            <th>Foco</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Avaliação escrita</td><td><strong>4,0</strong></td><td>Interpretação, vocabulário profissional, textos multimodais, ENEM, Prova Paraná e mundo do trabalho.</td></tr>
+          <tr><td>Plataforma Inglês Paraná High</td><td><strong>2,0</strong></td><td>Prática contínua, autonomia, listening, speaking, vocabulary, business English e trilhas digitais.</td></tr>
+          <tr><td>Simulado / Prova Paraná</td><td><strong>2,0</strong></td><td>Leitura, interpretação, gêneros textuais, textos multimodais e resolução de questões no modelo da Prova Paraná.</td></tr>
+          <tr><td>Projeto, produções e participação</td><td><strong>2,0</strong></td><td>Role-play, oralidade, colaboração, produção profissional, apresentação e uso funcional da língua inglesa.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="project">
+      <h2>💼 Projeto final do trimestre</h2>
+      <h3>Professional Interview Role-play Project</h3>
+      <p>
+        Neste trimestre, nossa culminância será a produção e apresentação de um <strong>role-play de entrevista de emprego em inglês</strong>, integrando vocabulário profissional, linguagem formal, postura, comunicação assertiva e estratégias de entrevista.
+      </p>
+
+      <p>Cada grupo deverá produzir:</p>
+      <div class="mission">
+        <div class="pill">roteiro em inglês</div>
+        <div class="pill">role-play</div>
+        <div class="pill">identidade visual</div>
+        <div class="pill">perfil profissional</div>
+        <div class="pill">respostas de entrevista</div>
+        <div class="pill">apresentação oral</div>
       </div>
-      <p class="footer-note">We will use audio for listening, pronunciation, speaking confidence, and real-world English exposure.</p>
-    </section>
 
+      <p>
+        A apresentação poderá representar uma entrevista presencial ou online. O grupo deverá demonstrar uso adequado da língua inglesa, postura profissional, organização das falas e colaboração.
+      </p>
 
-    <section class="slide">
-      <span class="tag">Class Routine</span>
-      <h2>How Classes Will Work</h2>
+      <h3>📌 Possíveis cargos ou situações</h3>
       <ul>
-        <li>Warm-up questions and vocabulary review.</li>
-        <li>Reading, listening, or slide-based input.</li>
-        <li>Pair work and group interaction.</li>
-        <li>Speaking practice using sentence frames.</li>
-        <li>Short tasks on Inglês Paraná High.</li>
-        <li>Exit tickets, review, and feedback.</li>
+        <li>Internship interview</li>
+        <li>First job interview</li>
+        <li>Customer service position</li>
+        <li>Technology company interview</li>
+        <li>Tourism or hotel job interview</li>
+        <li>International company interview</li>
+        <li>Business networking situation</li>
+        <li>Professional presentation pitch</li>
       </ul>
+
+      <h3>📋 Critérios de avaliação</h3>
+      <p>
+        O projeto terá valor total de <strong>2,0 pontos</strong>. Cada critério abaixo valerá <strong>0,5 ponto</strong>.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Critério</th>
+            <th>Valor</th>
+            <th>O que será observado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Oralidade e pronúncia</strong></td>
+            <td><strong>0,5</strong></td>
+            <td>Clareza na fala, esforço comunicativo, pronúncia compreensível, fluidez e participação oral.</td>
+          </tr>
+          <tr>
+            <td><strong>Uso da língua inglesa profissional</strong></td>
+            <td><strong>0,5</strong></td>
+            <td>Uso de vocabulário do mundo do trabalho, expressões de entrevista, linguagem formal e chunks estudados.</td>
+          </tr>
+          <tr>
+            <td><strong>Roteiro, conteúdo e criatividade</strong></td>
+            <td><strong>0,5</strong></td>
+            <td>Organização das falas, coerência da entrevista, criatividade, adequação ao cargo e qualidade das respostas.</td>
+          </tr>
+          <tr>
+            <td><strong>Postura e trabalho em grupo</strong></td>
+            <td><strong>0,5</strong></td>
+            <td>Postura profissional, colaboração, divisão de tarefas, comprometimento e apresentação visual do projeto.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>🏆 Rubrica simplificada</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Nível</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Excelente</strong></td>
+            <td>O grupo demonstrou excelente organização, uso consistente do inglês, postura profissional, criatividade e participação equilibrada.</td>
+          </tr>
+          <tr>
+            <td><strong>Bom</strong></td>
+            <td>O grupo apresentou boa comunicação, organização e uso adequado do inglês na maior parte da apresentação.</td>
+          </tr>
+          <tr>
+            <td><strong>Regular</strong></td>
+            <td>O grupo apresentou participação parcial, roteiro simples, pouca variedade linguística ou necessidade frequente de apoio.</td>
+          </tr>
+          <tr>
+            <td><strong>Em desenvolvimento</strong></td>
+            <td>O grupo apresentou pouca participação, baixa organização, uso muito limitado da língua inglesa ou ausência de elementos importantes.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        🎯 O mais importante será comunicar-se com clareza, colaborar com responsabilidade e usar o inglês de forma significativa em uma situação profissional.
+      </p>
     </section>
 
-    <section class="slide">
-      <span class="tag">Inglês Paraná High</span>
-      <h2>Platform Use</h2>
-      <p>We will use <strong>Inglês Paraná High</strong> as part of the learning process.</p>
-      <ul>
-        <li>Complete assigned activities.</li>
-        <li>Use the platform for practice and review.</li>
-        <li>Follow the digital learning trail.</li>
-        <li>Your participation may be monitored as part of your learning progress.</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <span class="tag">Assessments</span>
-      <h2>How You Will Be Evaluated</h2>
-      <div class="grid">
-        <div class="card"><strong>AV1</strong><span>Reading, vocabulary, interpretation, listening, and skills from the trimester.</span></div>
-        <div class="card"><strong>REC. AV1</strong><span>Recovery activities and review of essential content.</span></div>
-        <div class="card"><strong>Simulado</strong><span>Practice test focused on interpretation, inference, and descriptors.</span></div>
-        <div class="card"><strong>Project</strong><span>Professional pathway, oral presentation, or interview simulation.</span></div>
+    <section>
+      <h2>🔊 20 palavras prioritárias</h2>
+      <p>Clique no botão de áudio para ouvir a pronúncia em inglês.</p>
+      <div class="vocab-grid">
+        <div class="word"><span><strong>job interview</strong><br>entrevista de emprego</span><button class="audio" onclick="speak('job interview')">▶</button></div>
+        <div class="word"><span><strong>candidate</strong><br>candidato(a)</span><button class="audio" onclick="speak('candidate')">▶</button></div>
+        <div class="word"><span><strong>interviewer</strong><br>entrevistador(a)</span><button class="audio" onclick="speak('interviewer')">▶</button></div>
+        <div class="word"><span><strong>skills</strong><br>habilidades</span><button class="audio" onclick="speak('skills')">▶</button></div>
+        <div class="word"><span><strong>competence</strong><br>competência</span><button class="audio" onclick="speak('competence')">▶</button></div>
+        <div class="word"><span><strong>experience</strong><br>experiência</span><button class="audio" onclick="speak('experience')">▶</button></div>
+        <div class="word"><span><strong>strengths</strong><br>pontos fortes</span><button class="audio" onclick="speak('strengths')">▶</button></div>
+        <div class="word"><span><strong>weaknesses</strong><br>pontos a desenvolver</span><button class="audio" onclick="speak('weaknesses')">▶</button></div>
+        <div class="word"><span><strong>teamwork</strong><br>trabalho em equipe</span><button class="audio" onclick="speak('teamwork')">▶</button></div>
+        <div class="word"><span><strong>leadership</strong><br>liderança</span><button class="audio" onclick="speak('leadership')">▶</button></div>
+        <div class="word"><span><strong>communication</strong><br>comunicação</span><button class="audio" onclick="speak('communication')">▶</button></div>
+        <div class="word"><span><strong>adaptability</strong><br>adaptabilidade</span><button class="audio" onclick="speak('adaptability')">▶</button></div>
+        <div class="word"><span><strong>flexibility</strong><br>flexibilidade</span><button class="audio" onclick="speak('flexibility')">▶</button></div>
+        <div class="word"><span><strong>networking</strong><br>rede de contatos</span><button class="audio" onclick="speak('networking')">▶</button></div>
+        <div class="word"><span><strong>entrepreneurship</strong><br>empreendedorismo</span><button class="audio" onclick="speak('entrepreneurship')">▶</button></div>
+        <div class="word"><span><strong>resume</strong><br>currículo</span><button class="audio" onclick="speak('resume')">▶</button></div>
+        <div class="word"><span><strong>application</strong><br>candidatura</span><button class="audio" onclick="speak('application')">▶</button></div>
+        <div class="word"><span><strong>salary</strong><br>salário</span><button class="audio" onclick="speak('salary')">▶</button></div>
+        <div class="word"><span><strong>goal</strong><br>meta / objetivo</span><button class="audio" onclick="speak('goal')">▶</button></div>
+        <div class="word"><span><strong>confidence</strong><br>confiança</span><button class="audio" onclick="speak('confidence')">▶</button></div>
       </div>
     </section>
 
-    <section class="slide">
-      <span class="tag">Project</span>
-      <h2>My Professional Pathway</h2>
-      <p>This trimester project will help you connect English with your future.</p>
+    <section>
+      <h2>💬 20 chunks / expressões importantes</h2>
+      <p>Essas expressões ajudam você a se comunicar em entrevistas e situações profissionais em inglês.</p>
+      <div class="vocab-grid">
+        <div class="word"><span><strong>Good morning. Nice to meet you.</strong><br>Bom dia. Prazer em conhecê-lo(a).</span><button class="audio" onclick="speak('Good morning. Nice to meet you')">▶</button></div>
+        <div class="word"><span><strong>Thank you for the opportunity.</strong><br>Obrigado(a) pela oportunidade.</span><button class="audio" onclick="speak('Thank you for the opportunity')">▶</button></div>
+        <div class="word"><span><strong>Could you tell me about yourself?</strong><br>Você poderia falar sobre você?</span><button class="audio" onclick="speak('Could you tell me about yourself')">▶</button></div>
+        <div class="word"><span><strong>I am interested in this position.</strong><br>Tenho interesse nesta vaga.</span><button class="audio" onclick="speak('I am interested in this position')">▶</button></div>
+        <div class="word"><span><strong>I have experience in…</strong><br>Eu tenho experiência em…</span><button class="audio" onclick="speak('I have experience in')">▶</button></div>
+        <div class="word"><span><strong>My greatest strength is…</strong><br>Meu maior ponto forte é…</span><button class="audio" onclick="speak('My greatest strength is')">▶</button></div>
+        <div class="word"><span><strong>I need to improve…</strong><br>Eu preciso melhorar…</span><button class="audio" onclick="speak('I need to improve')">▶</button></div>
+        <div class="word"><span><strong>I work well in a team.</strong><br>Eu trabalho bem em equipe.</span><button class="audio" onclick="speak('I work well in a team')">▶</button></div>
+        <div class="word"><span><strong>I am open to learning.</strong><br>Estou aberto(a) a aprender.</span><button class="audio" onclick="speak('I am open to learning')">▶</button></div>
+        <div class="word"><span><strong>I can solve problems.</strong><br>Eu consigo resolver problemas.</span><button class="audio" onclick="speak('I can solve problems')">▶</button></div>
+        <div class="word"><span><strong>I am responsible and organized.</strong><br>Sou responsável e organizado(a).</span><button class="audio" onclick="speak('I am responsible and organized')">▶</button></div>
+        <div class="word"><span><strong>I would like to grow professionally.</strong><br>Gostaria de crescer profissionalmente.</span><button class="audio" onclick="speak('I would like to grow professionally')">▶</button></div>
+        <div class="word"><span><strong>What are the next steps?</strong><br>Quais são os próximos passos?</span><button class="audio" onclick="speak('What are the next steps')">▶</button></div>
+        <div class="word"><span><strong>Could you explain the position?</strong><br>Você poderia explicar a vaga?</span><button class="audio" onclick="speak('Could you explain the position')">▶</button></div>
+        <div class="word"><span><strong>What skills are important for this job?</strong><br>Quais habilidades são importantes para este trabalho?</span><button class="audio" onclick="speak('What skills are important for this job')">▶</button></div>
+        <div class="word"><span><strong>I look forward to hearing from you.</strong><br>Aguardo seu retorno.</span><button class="audio" onclick="speak('I look forward to hearing from you')">▶</button></div>
+        <div class="word"><span><strong>Thank you for your time.</strong><br>Obrigado(a) pelo seu tempo.</span><button class="audio" onclick="speak('Thank you for your time')">▶</button></div>
+        <div class="word"><span><strong>I believe I can contribute.</strong><br>Acredito que posso contribuir.</span><button class="audio" onclick="speak('I believe I can contribute')">▶</button></div>
+        <div class="word"><span><strong>I am a fast learner.</strong><br>Aprendo rápido.</span><button class="audio" onclick="speak('I am a fast learner')">▶</button></div>
+        <div class="word"><span><strong>I am excited about this opportunity.</strong><br>Estou animado(a) com esta oportunidade.</span><button class="audio" onclick="speak('I am excited about this opportunity')">▶</button></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>📌 Como estudar para a AV.1, REC. AV.1 e Prova Paraná</h2>
       <ul>
-        <li>You will think about your skills and interests.</li>
-        <li>You will prepare language for professional situations.</li>
-        <li>You may create a professional profile, presentation, or interview simulation.</li>
-        <li>You will use English to present part of your professional identity.</li>
+        <li>Revise vocabulário sobre entrevistas, trabalho, competências e carreira.</li>
+        <li>Pratique os 20 chunks profissionais.</li>
+        <li>Releia atividades do caderno, dos slides e do Inglês Paraná High.</li>
+        <li>Treine leitura de textos multimodais e questões no estilo ENEM.</li>
+        <li>Revise linguagem formal e informal.</li>
+        <li>Pratique respostas para perguntas comuns de entrevistas.</li>
+        <li>Use a plataforma Inglês Paraná High para revisar listening, speaking e business English.</li>
+        <li>Acompanhe os registros e orientações no LRCO.</li>
       </ul>
     </section>
 
-    <section class="slide">
-      <span class="tag">Final Presentation</span>
-      <h2>Culminância</h2>
-      <p>At the end of the trimester, students may present their project through:</p>
+    <section class="tips">
+      <h2>⭐ Dicas importantes</h2>
       <ul>
-        <li>Mock Job Interview</li>
-        <li>Career Presentation</li>
-        <li>Professional Profile</li>
-        <li>Digital Presentation</li>
-        <li>Career Portfolio</li>
-        <li>Feira de Profissões em Língua Inglesa</li>
+        <li>Participe das práticas orais: speaking melhora com repetição.</li>
+        <li>Use linguagem formal em contextos profissionais.</li>
+        <li>Não decore apenas frases: entenda quando usá-las.</li>
+        <li>Treine postura, tom de voz e clareza.</li>
+        <li>Organize suas ideias antes de responder.</li>
+        <li>Use o inglês como ferramenta para seu futuro.</li>
       </ul>
     </section>
 
-    <section class="slide">
-      <span class="tag">Class Expectations</span>
-      <h2>What I Expect From You</h2>
-      <ul>
-        <li>Participate, even if your English is not perfect.</li>
-        <li>Respect your classmates during speaking activities.</li>
-        <li>Complete classroom and platform tasks.</li>
-        <li>Use English as much as possible.</li>
-        <li>Ask for help when you need it.</li>
-        <li>Try, practice, improve.</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <span class="tag">Mindset</span>
-      <div class="big-word">English is a tool.</div>
-      <p class="quote">You do not need perfect English to communicate. You need practice, courage, and consistency.</p>
-    </section>
-
+    <div class="footer">
+      Learn English. Build confidence. Prepare for your future.<br>
+      Língua Inglesa – 3ª Série do Ensino Médio | 2º Trimestre – 2026
+    </div>
   </main>
 
   <script>
     function speak(text) {
+      if (!('speechSynthesis' in window)) return;
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'en-US';
-      utterance.rate = 0.82;
-      utterance.pitch = 1;
+      utterance.rate = 0.85;
       window.speechSynthesis.speak(utterance);
     }
   </script>
